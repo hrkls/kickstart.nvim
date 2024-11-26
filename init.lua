@@ -908,6 +908,14 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<C-s>',
+          node_incremental = '<C-s>',
+          node_decremental = '<C-S-s>',
+        },
+      },
       indent = { enable = true, disable = { 'ruby' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
@@ -944,6 +952,13 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
+  'tpope/vim-fugitive',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
