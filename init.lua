@@ -174,8 +174,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
-
+vim.keymap.set('i', 'jj', '<Esc>:w<CR>', { noremap = true, silent = true })
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -183,7 +182,7 @@ vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
+-- Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -544,6 +543,7 @@ require('lazy').setup({
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
+          map('<leader>cf', ':!npx eslint --fix %<CR>', '[C]ode[F]ix', { 'n', 'x' })
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -710,6 +710,10 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        typescript = { 'eslint_d', 'prettierd' },
+        typescriptreact = { 'eslint_d', 'prettierd' },
+        javascript = { 'eslint_d', 'prettierd' },
+        graphql = { 'prettierd' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
